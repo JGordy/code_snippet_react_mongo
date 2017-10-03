@@ -1,19 +1,17 @@
+// Importing Node modules and initializing Express
 const express = require('express'),
-      app     = express(),
-      logger  = require('morgan'),
+      app = express(),
       bodyParser = require('body-parser'),
-      config  = require('./config/main'),
-      mongoose = require('mongoose');
-
-
+      logger = require('morgan'),
+      mongoose = require('mongoose'),
+      config = require('./config/main');
+const router = require('./routers')
 
 // Start the server
 const server = app.listen(config.port);
 console.log('Your server is running on port ' + config.port + '.');
 
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Setting up basic middleware for all Express requests
 app.use(logger('dev')); // Log requests to API using morgan
 
 // Enable CORS from client-side
@@ -25,8 +23,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-//database connection
+// Database Connection
 var promise = mongoose.connect(config.database, {
-  useMongoClient: true
+  useMongoClient: true,
 });
+
+router(app);  
