@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon index.js"
   },
   "keywords": [],
@@ -15,11 +15,13 @@
     "body-parser": "^1.18.2",
     "crypto": "^1.0.1",
     "express": "^4.16.1",
+    "jest": "^21.2.1",
     "jsonwebtoken": "^8.0.1",
     "mongoose": "^4.11.14",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "supertest": "^3.0.0"
   }
 }
