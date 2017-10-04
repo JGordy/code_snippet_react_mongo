@@ -32,6 +32,9 @@ const AuthenticationController = require('./controllers/authentication'),
   authRoutes.post('/snippet',
   AuthenticationController.createSnippet)
 
+  authRoutes.get('/snippet',
+  AuthenticationController.findSnippets)
+
   authRoutes.get('/', function(req, res) {
   res.send('Relax. We will put the home page here later.');
 });

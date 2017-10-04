@@ -8,7 +8,7 @@ const snippetSchema = new Schema({
     type: String, lowercase: true, required: true
   },
   title: {
-    type: String, unique: true, lowercase: true, required: true
+    type: String, lowercase: true, required: true
   },
   code: {
     type: String,

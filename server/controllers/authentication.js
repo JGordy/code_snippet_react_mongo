@@ -122,3 +122,23 @@ exports.createSnippet = (req, res, next) => {
     })
   });
 }
+
+//========================================
+// Find Snippet Route
+//========================================
+
+exports.findSnippets = (req, res, next) => {
+  Snippet.find({})
+  .then(data => {
+    res.status(200).send({
+      status: 'success',
+      data: data
+    })
+    .catch(err => {
+      res.status(404).send({
+        status: 'fail',
+        data: err
+      })
+    })
+  })
+}

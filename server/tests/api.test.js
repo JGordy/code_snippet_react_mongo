@@ -88,3 +88,17 @@ describe('POST /api/auth/snippet', () => {
     });
   })
 })
+
+describe('GET /api/auth/snippet', () => {
+  test('Should bring back all snippets and get a status of 200', () => {
+    return request(app)
+    .get('/api/auth/snippet')
+    .expect(200)
+    .then(res => {
+      expect(res.body).toHaveProperty('status')
+      expect(res.body.status).toBe('success')
+      expect(res.body).toHaveProperty('data')
+      expect(res.body.data).toBeTruthy()
+    })
+  })
+})
