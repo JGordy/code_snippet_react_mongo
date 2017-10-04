@@ -132,3 +132,15 @@ describe('PUT /api/auth/snippet/:id', () => {
     })
   })
 })
+
+describe('DELETE /api/auth/snippet/:id/delete', () => {
+  test('Should remove a user based on the id', () => {
+    return request(app)
+    .delete(`/api/auth/snippet/${snippetId}/delete`)
+    .expect(200)
+    .then(res => {
+      expect(res.body).toHaveProperty('message')
+      expect(res.body.message).toContain("Successfully Removed")
+    })
+  })
+})

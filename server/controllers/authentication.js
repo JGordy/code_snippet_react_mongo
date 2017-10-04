@@ -168,3 +168,16 @@ exports.updateSnippet =(req, res, next) => {
     })
   })
 };
+
+exports.deleteSnippet = (req, res, next) => {
+
+  Snippet.deleteOne({_id: req.params.id})
+    .then(data => {
+      res.status(200).send({
+        message: 'Successfully Removed'
+      });
+    })
+    .catch(err => {
+      res.status(404).send(err)
+    })
+}
