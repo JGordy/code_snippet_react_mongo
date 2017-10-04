@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('../index');
 
 let userId;
+let snippetId;
 
 describe('POST /api/auth/register', () => {
   test('Should receive object with token and user object', () => {
@@ -73,6 +74,7 @@ describe('POST /api/auth/snippet', () => {
       tags: 'tag1, tag2, tag3'
     })
     .then(res => {
+      snippetId = res.body.data._id;
       expect(res.body.data).toHaveProperty('username')
       expect(res.body.data.username).toBe('jgordy24')
       expect(res.body.data).toHaveProperty('title')
@@ -85,6 +87,8 @@ describe('POST /api/auth/snippet', () => {
       expect(res.body.data.language).toBe('language')
       expect(res.body.data).toHaveProperty('tags')
       expect(res.body.data.tags).toEqual(['tag1', 'tag2', 'tag3'])
+      expect(res.body.data).toHaveProperty('_id')
+      expect(res.body.data._id).toBeTruthy()
     });
   })
 })
@@ -99,6 +103,32 @@ describe('GET /api/auth/snippet', () => {
       expect(res.body.status).toBe('success')
       expect(res.body).toHaveProperty('data')
       expect(res.body.data).toBeTruthy()
+    })
+  })
+})
+
+describe('PUT /api/auth/snippet/:id', () => {
+  test('Should update a snippet with the given id', () => {
+    return request(app)
+    .put(`/api/auth/snippet/${snippetId}`)
+    .expect(200)
+    .send({
+      username: 'jgordy24',
+      title: 'titles',
+      code: 'codes',
+      notes: 'notes',
+      language: 'languages',
+      tags: 'tag1, tag2, tag3'
+    })
+    .then(res => {
+      expect(res.body).toHaveProperty('status')
+      expect(res.body.status).toBe('success')
+      expect(res.body.data).toHaveProperty('n')
+      expect(res.body.data.n).toBe(1)
+      expect(res.body.data).toHaveProperty('nModified')
+      expect(res.body.data.nModified).toBe(1)
+      expect(res.body.data).toHaveProperty('ok')
+      expect(res.body.data.ok).toBe(1)
     })
   })
 })

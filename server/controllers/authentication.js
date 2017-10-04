@@ -109,10 +109,10 @@ exports.createSnippet = (req, res, next) => {
   }
 
   Snippet.create(newSnippet)
-  .then(() => {
+  .then(data => {
     res.status(200).send({
       status: 'success',
-      data: newSnippet
+      data: data
     })
   })
   .catch(err => {
@@ -141,4 +141,30 @@ exports.findSnippets = (req, res, next) => {
       })
     })
   })
-}
+};
+
+exports.updateSnippet =(req, res, next) => {
+
+  let newSnippet = {
+    title: req.body.title,
+    code: req.body.code,
+    notes: req.body.notes,
+    language: req.body.language,
+    tags: req.body.tags.split(', ')
+  }
+
+  Snippet.update({_id: req.params.id}, {$set: newSnippet
+  })
+  .then(data => {
+    res.status(200).send({
+      status: 'success',
+      data: data
+    })
+    .catch(err => {
+      res.status(404).send({
+        status: 'fail',
+        data: err
+      })
+    })
+  })
+};
