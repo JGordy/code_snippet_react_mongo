@@ -26,6 +26,9 @@ const AuthenticationController = require('./controllers/authentication'),
   // Login route
   authRoutes.post('/login', requireLogin, AuthenticationController.login);
 
+  // Delete route
+  authRoutes.delete('/user/:id', AuthenticationController.delete);
+
   authRoutes.get('/', function(req, res) {
   res.send('Relax. We will put the home page here later.');
 });
