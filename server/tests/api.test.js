@@ -4,6 +4,10 @@ const app = require('../index');
 let userId;
 let snippetId;
 
+//========================================
+// User Register Route Test
+//========================================
+
 describe('POST /api/auth/register', () => {
   test('Should receive object with token and user object', () => {
     return request(app)
@@ -27,6 +31,9 @@ describe('POST /api/auth/register', () => {
   })
 })
 
+//========================================
+// User Login Route Test
+//========================================
 
 describe('POST /api/auth/login', () => {
   test('Should receive token and get status of 200', () => {
@@ -48,6 +55,10 @@ describe('POST /api/auth/login', () => {
   })
 })
 
+//========================================
+// Delete User Route Test
+//========================================
+
 describe('DELETE /api/auth/delete', () => {
   test('Should remove a user based on the id', () => {
     return request(app)
@@ -59,6 +70,10 @@ describe('DELETE /api/auth/delete', () => {
     })
   })
 })
+
+//========================================
+// Create Snippet Route Test
+//========================================
 
 describe('POST /api/auth/snippet', () => {
   test('Should create a snippet and return object with snippet details', () => {
@@ -93,6 +108,10 @@ describe('POST /api/auth/snippet', () => {
   })
 })
 
+//========================================
+// Find Snippet Route Test
+//========================================
+
 describe('GET /api/auth/snippet', () => {
   test('Should bring back all snippets and get a status of 200', () => {
     return request(app)
@@ -106,6 +125,10 @@ describe('GET /api/auth/snippet', () => {
     })
   })
 })
+
+//========================================
+// Update Snippet Route Test
+//========================================
 
 describe('PUT /api/auth/snippet/:id', () => {
   test('Should update a snippet with the given id', () => {
@@ -132,6 +155,10 @@ describe('PUT /api/auth/snippet/:id', () => {
     })
   })
 })
+
+//========================================
+// Delete Snippet Route Test
+//========================================
 
 describe('DELETE /api/auth/snippet/:id/delete', () => {
   test('Should remove a user based on the id', () => {

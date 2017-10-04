@@ -18,6 +18,11 @@ function setUserInfo(request) {
     email: request.email,
   };
 }
+
+//========================================
+// User Login Route
+//========================================
+
 exports.login = function(req, res, next) {
   let userInfo = setUserInfo(req.user);
   res.status(200).json({
@@ -26,7 +31,7 @@ exports.login = function(req, res, next) {
   });
 }
 //========================================
-// Registration Route
+// User Registration Route
 //========================================
 exports.register = function(req, res, next) {
   // Check for registration errors
@@ -66,7 +71,7 @@ exports.register = function(req, res, next) {
 }
 
 //========================================
-// Delete Route
+// Delete User Route
 //========================================
 
 exports.delete = (req, res, next) => {
@@ -85,11 +90,6 @@ exports.delete = (req, res, next) => {
   //   res.status(404).send('Bad Kitty')
   // }
 }
-
-// exports.testing = (req, res, next) => {
-//   console.log('testing req.user: ', req.user);
-//   res.send('testing');
-// }
 
 //========================================
 // Create Snippet Route
@@ -124,7 +124,7 @@ exports.createSnippet = (req, res, next) => {
 }
 
 //========================================
-// Find Snippet Route
+// Find Snippets Route
 //========================================
 
 exports.findSnippets = (req, res, next) => {
@@ -142,6 +142,10 @@ exports.findSnippets = (req, res, next) => {
     })
   })
 };
+
+//========================================
+// Update Snippet Route
+//========================================
 
 exports.updateSnippet =(req, res, next) => {
 
@@ -168,6 +172,10 @@ exports.updateSnippet =(req, res, next) => {
     })
   })
 };
+
+//========================================
+// Delete Snippet Route
+//========================================
 
 exports.deleteSnippet = (req, res, next) => {
 
