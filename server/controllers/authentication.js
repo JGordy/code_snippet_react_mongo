@@ -86,7 +86,39 @@ exports.delete = (req, res, next) => {
   // }
 }
 
-exports.testing = (req, res, next) => {
-  console.log('testing req.user: ', req.user);
-  res.send('testing');
+// exports.testing = (req, res, next) => {
+//   console.log('testing req.user: ', req.user);
+//   res.send('testing');
+// }
+
+//========================================
+// Create Snippet Route
+//========================================
+
+exports.createSnippet = (req, res, next) => {
+
+  let arr = req.body.tags.split(', ');
+
+  let newSnippet = {
+    username: 'jgordy24',
+    title: req.body.title,
+    code: req.body.code,
+    notes: req.body.notes,
+    language: req.body.language,
+    tags: req.body.tags.split(', ')
+  }
+
+  Snippet.create(newSnippet)
+  .then(() => {
+    res.status(200).send({
+      status: 'success',
+      data: newSnippet
+    })
+  })
+  .catch(err => {
+    res.status(404).send({
+      status: 'fail',
+      data: err
+    })
+  });
 }

@@ -5,7 +5,7 @@ mongoose.connect("mongodb://localhost:27017/codeSnippetsReact");
 
 const snippetSchema = new Schema({
   username: {
-    type: String, unique: true, required: true
+    type: String, lowercase: true, required: true
   },
   title: {
     type: String, unique: true, lowercase: true, required: true

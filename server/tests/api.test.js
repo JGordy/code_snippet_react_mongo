@@ -58,3 +58,33 @@ describe('DELETE /api/auth/delete', () => {
     })
   })
 })
+
+describe('POST /api/auth/snippet', () => {
+  test('Should create a snippet and return object with snippet details', () => {
+    return request(app)
+    .post('/api/auth/snippet')
+    .expect(200)
+    .send({
+      username: 'jgordy24',
+      title: 'title',
+      code: 'code',
+      notes: 'notes',
+      language: 'language',
+      tags: 'tag1, tag2, tag3'
+    })
+    .then(res => {
+      expect(res.body.data).toHaveProperty('username')
+      expect(res.body.data.username).toBe('jgordy24')
+      expect(res.body.data).toHaveProperty('title')
+      expect(res.body.data.title).toBe('title')
+      expect(res.body.data).toHaveProperty('code')
+      expect(res.body.data.code).toBe('code')
+      expect(res.body.data).toHaveProperty('notes')
+      expect(res.body.data.notes).toBe('notes')
+      expect(res.body.data).toHaveProperty('language')
+      expect(res.body.data.language).toBe('language')
+      expect(res.body.data).toHaveProperty('tags')
+      expect(res.body.data.tags).toEqual(['tag1', 'tag2', 'tag3'])
+    });
+  })
+})
